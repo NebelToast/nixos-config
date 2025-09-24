@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs,lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
 
@@ -23,6 +28,7 @@
   programs.zoxide.enable = true;
   programs.nh.enable = true;
 
+home-manager.users.julius = ./home.nix;
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -48,7 +54,7 @@
           "--remember-user-session"
           "--sessions '${sessionData}/share/wayland-sessions:${sessionData}/share/xsessions'"
         ];
-  
+
     };
   };
 
@@ -85,7 +91,6 @@
   # You can disable this if you're only using the Wayland session.
 
   # Enable the KDE Plasma Desktop Environment.
-
 
   # Configure console keymap
   console.keyMap = "de";

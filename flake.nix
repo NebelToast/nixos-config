@@ -25,6 +25,13 @@
         modules = [
           ./configuration.nix
           ./hardware-configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+            };
+          }
         ];
       };
       formatter.${system} = pkgs.nixfmt-tree;
