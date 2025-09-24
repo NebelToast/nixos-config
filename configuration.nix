@@ -21,6 +21,9 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 programs.git.enable = true;
+services.flatpak.enable = true;
+
+nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -105,6 +108,7 @@ programs.git.enable = true;
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   vscode-fhs
+  obsidian
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
