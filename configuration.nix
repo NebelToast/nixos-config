@@ -2,10 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs,lib, ... }:
 
 {
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -20,14 +19,49 @@
   programs.git.enable = true;
   services.flatpak.enable = true;
   programs.hyprland.enable = true;
+  programs.fish.enable = true;
+  programs.zoxide.enable = true;
+  programs.nh.enable = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    warn-dirty = false;
+    auto-optimise-store = true;
+  };
   # Enable networking
   networking.networkmanager.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session.command =
+        let
+          sessionData = config.services.displayManager.sessionData.desktops;
+        in
+        lib.concatStringsSep " " [
+          (lib.getExe pkgs.greetd.tuigreet)
+          "--time"
+          "--asterisks"
+          "--remember"
+          "--remember-user-session"
+          "--sessions '${sessionData}/share/wayland-sessions:${sessionData}/share/xsessions'"
+        ];
+  
+    };
+  };
+
+  # Prevent systemd messages from covering the TUI
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInputs = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -49,17 +83,9 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "de";
-    variant = "";
-  };
 
   # Configure console keymap
   console.keyMap = "de";
@@ -99,7 +125,11 @@
       kitty
       waybar
       rofi
+      just
+      cbonsai
+
     ];
+    shell = pkgs.fish;
   };
 
   # Install firefox.

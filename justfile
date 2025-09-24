@@ -1,2 +1,2 @@
 switch:
-nixos-rebuild switch --flake .#UwU --use-remote-sudo 
+    nh os switch .
