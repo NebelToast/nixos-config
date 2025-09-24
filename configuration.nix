@@ -5,25 +5,26 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "UwU"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-programs.git.enable = true;
-services.flatpak.enable = true;
+  programs.git.enable = true;
+  services.flatpak.enable = true;
+  programs.hyprland.enable = true;
 
-nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -89,10 +90,15 @@ nix.settings.experimental-features = ["nix-command" "flakes"];
   users.users.julius = {
     isNormalUser = true;
     description = "julius";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
+      #  thunderbird
+      kitty
+      waybar
+      rofi
     ];
   };
 
@@ -105,10 +111,10 @@ nix.settings.experimental-features = ["nix-command" "flakes"];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  vscode-fhs
-  obsidian
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    vscode-fhs
+    obsidian
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
