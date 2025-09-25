@@ -1,4 +1,4 @@
-{ config,pkgs, ... }:
+{ config, pkgs, ... }:
 {
   home.packages = with pkgs; [
     nemo-with-extensions
@@ -15,7 +15,7 @@
     hyprpaper
     davinci-resolve
   ];
-  
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
