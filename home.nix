@@ -1,13 +1,6 @@
 { config, pkgs, ... }:
 {
-    imports = [
-    ./modules/btop.nix
-    ./modules/fish.nix
-    ./modules/kitty.nix
-    ./modules/rofi.nix
-    ./modules/wallust.nix
-    ./modules/waybar.nix
-  ];
+
   home.packages = with pkgs; [
     nemo-with-extensions
     kitty
