@@ -24,7 +24,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
 
-            users.julius = import ./home.nix;
+
             # ----------------------
           };
         }

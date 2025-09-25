@@ -5,6 +5,7 @@
     nemo-with-extensions
     kitty
     waybar
+    direnv
     rofi
     just
     cbonsai
