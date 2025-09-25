@@ -89,7 +89,7 @@
   programs.nh.enable = true;
   services.blueman.enable = true;
 
-  home-manager.users.julius = ./home.nix;
+
   nix.settings = {
     experimental-features = [
       "nix-command"

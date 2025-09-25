@@ -1,7 +1,6 @@
-{ config,lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   home.packages = with pkgs; [
-
     nemo-with-extensions
     kitty
     waybar
@@ -18,7 +17,7 @@
     hyprpaper
     davinci-resolve
     brightnessctl
-        (pkgs.writeScriptBin "wallchanger" ''
+    (pkgs.writeScriptBin "wallchanger" ''
       #!${lib.getExe pkgs.python3}
       ${builtins.readFile ./wallchanger.py}
     '')
@@ -29,46 +28,49 @@
       color-scheme = "prefer-dark";
     };
   };
-services.cliphist.enable = true;
+  services.cliphist.enable = true;
 
-    systemd.user.services.cliphist.Service.ExecStopPost =
-      "${lib.getExe config.services.cliphist.package} wipe";
+  systemd.user.services.cliphist.Service.ExecStopPost =
+    "${lib.getExe config.services.cliphist.package} wipe";
 
+  # Merged GTK, QT, and Cursor configuration to fix duplicate definitions
+  gtk = {
+    enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      name = "Open Sans";
+      package = pkgs.open-sans;
+    };
+  };
 
-      gtk = {
-        enable = true;
-        gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-        theme.package = pkgs.gnome-themes-extra;
-        iconTheme.package = pkgs.papirus-icon-theme;
-        font = {
-          name = "Open Sans";
-          package = pkgs.open-sans;
-        };
-      };
-      qt = {
-        enable = true;
-        style.package = pkgs.adwaita-qt;
-        platformTheme.name = "adwaita";
-      };
-      home.pointerCursor = {
-        gtk.enable = true;
-        package = pkgs.bibata-cursors;
-        size = 24;
-      };
-    
+  qt = {
+    enable = true;
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
+    platformTheme.name = "adwaita";
+  };
 
+  home.pointerCursor = {
+    name = "Bibata-Original-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;
+  };
 
-      gtk = {
-        theme.name = "Adwaita-dark";
-        iconTheme.name = "Papirus-Dark";
-      };
-      qt.style.name = "adwaita-dark";
-      home.pointerCursor.name = "Bibata-Original-Classic";
-    
-programs.direnv = {
-  enable = true;
-  nix-direnv.enable = true;
-  silent = true;
-};
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    silent = true;
+  };
   home.stateVersion = "25.05";
 }
