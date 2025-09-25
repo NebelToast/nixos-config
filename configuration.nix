@@ -27,24 +27,22 @@
 
   };
 
-  # services.xserver.videoDrivers = [ "modesetting" ];
+    # services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics = {
-    enable = true;
+        enable = true;
     enable32Bit = true;
 
     extraPackages = with pkgs; [
       #for davinci resolve
       intel-compute-runtime
       rocmPackages.clr.icd
-
+      
       # For modern Intel CPU's
       intel-media-driver # Enable Hardware Acceleration
       # vpl-gpu-rt # Enable QSV
     ];
   };
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
   fonts.packages = with pkgs; [
     fira-code
     font-awesome

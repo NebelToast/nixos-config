@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 {
     imports = [
     ./modules/btop.nix
@@ -19,16 +19,27 @@
     cava
     rofi
     cliphist
-    wl-clipboard
-    (pkgs.writeScriptBin "rofi-clipboard" "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
     btop
     hyprpaper
     davinci-resolve
     brightnessctl
-    (pkgs.writeScriptBin "wallchanger" ''
-      #!${lib.getExe pkgs.python3}
-      ${builtins.readFile ./wallchanger.py}
-    '')
+    (python3Packages.buildPythonApplication {
+  pname = "wallchanger";
+  version = "2.7.9";
+  pyproject = true;
+
+  src = ./wallchanger.py;
+  build-system = with pkgs.python3Packages; [ setuptools ];
+
+  # dependencies = with python3Packages; [
+  #   tornado
+  #   python-daemon
+  # ];
+
+  # meta = {
+  #   # ...
+  # };
+})
   ];
 # Import all your modularized configurations
 
@@ -37,49 +48,6 @@
       color-scheme = "prefer-dark";
     };
   };
-  services.cliphist.enable = true;
 
-  systemd.user.services.cliphist.Service.ExecStopPost =
-    "${lib.getExe config.services.cliphist.package} wipe";
-
-  # Merged GTK, QT, and Cursor configuration to fix duplicate definitions
-  gtk = {
-    enable = true;
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    font = {
-      name = "Open Sans";
-      package = pkgs.open-sans;
-    };
-  };
-
-  qt = {
-    enable = true;
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
-    platformTheme.name = "adwaita";
-  };
-
-  home.pointerCursor = {
-    name = "Bibata-Original-Classic";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    silent = true;
-  };
   home.stateVersion = "25.05";
 }
