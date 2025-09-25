@@ -8,6 +8,7 @@
     waybar
     direnv
     rofi
+    wallust
     just
     cbonsai
     spotify
