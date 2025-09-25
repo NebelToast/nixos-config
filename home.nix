@@ -1,5 +1,13 @@
 { config, lib, pkgs, ... }:
 {
+    imports = [
+    ./modules/btop.nix
+    ./modules/fish.nix
+    ./modules/kitty.nix
+    ./modules/rofi.nix
+    ./modules/wallust.nix
+    ./modules/waybar.nix
+  ];
   home.packages = with pkgs; [
     nemo-with-extensions
     kitty
@@ -22,6 +30,7 @@
       ${builtins.readFile ./wallchanger.py}
     '')
   ];
+# Import all your modularized configurations
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
