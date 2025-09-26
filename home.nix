@@ -36,6 +36,7 @@ in
   home.packages = with pkgs; [
     nemo-with-extensions
     kitty
+    intel-gpu-tools
     waybar
     direnv
     nurl

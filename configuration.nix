@@ -26,7 +26,16 @@
     consoleLogLevel = 3;
 
   };
-
+services.thermald.enable = true;
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+    };
+    charger = {
+      governor = "powersave";
+    };
+  };
   # services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics = {
     enable = true;
@@ -88,6 +97,7 @@
   programs.zoxide.enable = true;
   programs.nh.enable = true;
   services.blueman.enable = true;
+
 
   home-manager.users.julius = ./home.nix;
   nix.settings = {
