@@ -38,6 +38,8 @@ in
     kitty
     intel-gpu-tools
     waybar
+    pavucontrol
+    discord
     direnv
     nurl
     rofi

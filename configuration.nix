@@ -26,7 +26,7 @@
     consoleLogLevel = 3;
 
   };
-services.thermald.enable = true;
+services.thermald.enable = false;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
