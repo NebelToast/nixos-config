@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs,inputs, ... }:
 
 # # Use a 'let' block to define custom packages for better organization
 let
@@ -34,6 +34,7 @@ in
 
 {
   home.packages = with pkgs; [
+    inputs.zen-browser.packages.${pkgs.system}.default
     nemo-with-extensions
     kitty
     intel-gpu-tools
@@ -109,7 +110,6 @@ in
     size = 24;
     gtk.enable = true;
   };
-
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
