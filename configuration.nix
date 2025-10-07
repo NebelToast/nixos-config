@@ -6,10 +6,22 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
+let
+  # --- ADD THIS LINE ---
+  # Create a package set from your new 'nixpkgs-stable' input
+  stable-pkgs = import inputs.nixpkgs-stable {
+    system = pkgs.system;
+    # Ensure it uses the same configuration as your main packages
+    config = config.nixpkgs.config;
+  };
+  in
+
 {
+
   boot = {
     plymouth.enable = true;
     loader.timeout = 0;
@@ -26,7 +38,7 @@
     consoleLogLevel = 3;
 
   };
-services.thermald.enable = false;
+  services.thermald.enable = false;
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
@@ -43,11 +55,11 @@ services.thermald.enable = false;
 
     extraPackages = with pkgs; [
       #for davinci resolve
-      intel-compute-runtime
-      rocmPackages.clr.icd
+      stable-pkgs.intel-compute-runtime
+      stable-pkgs.rocmPackages.clr.icd
 
       # For modern Intel CPU's
-      intel-media-driver # Enable Hardware Acceleration
+      stable-pkgs.intel-media-driver # Enable Hardware Acceleration
       # vpl-gpu-rt # Enable QSV
     ];
   };
@@ -98,8 +110,7 @@ services.thermald.enable = false;
   programs.nh.enable = true;
   services.blueman.enable = true;
   programs.steam.enable = true;
-
-
+  home-manager.extraSpecialArgs = { inherit stable-pkgs; };
   home-manager.users.julius = ./home.nix;
   nix.settings = {
     experimental-features = [

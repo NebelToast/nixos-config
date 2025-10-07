@@ -1,7 +1,16 @@
-{ config, lib, pkgs,inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  stable-pkgs,
+  ...
+}:
 
 # # Use a 'let' block to define custom packages for better organization
+
 let
+
   terminal-flow = pkgs.python3Packages.buildPythonApplication rec {
     pname = "terminal-flow";
     version = "unstable";
@@ -30,6 +39,7 @@ let
       license = licenses.mit;
     };
   };
+  
 in
 
 {
@@ -43,13 +53,13 @@ in
     geteduroam
     geteduroam-cli
     hyprshot
-    jetbrains.pycharm-professional
+    stable-pkgs.jetbrains.pycharm-professional
     superfile
     pokemonsay
     fortune
     obs-studio
     fastfetch
-    (callPackage ./brrtfetch.nix {})
+    (callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; })
     intel-gpu-tools
     waybar
     pavucontrol
@@ -113,7 +123,7 @@ in
     platformTheme.name = "adwaita";
     style = {
       name = "adwaita-dark";
-      package = pkgs.adwaita-qt; 
+      package = pkgs.adwaita-qt;
     };
   };
 
