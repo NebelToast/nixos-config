@@ -18,14 +18,6 @@
       url = "github:ferrebarrat/brrtfetch/main";
       flake = false; # This is a non-flake repository
     };
-    pokemon-icat-src = {
-      url = "github:aflaag/pokemon-icat";
-      flake = false;
-    };
-    pokemon-icons-src = {
-      url = "github:aflaag/pokemon-icons/v1.2.0"; # Pin to the specific version tag
-      flake = false;
-    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
