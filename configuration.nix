@@ -18,7 +18,7 @@ let
     # Ensure it uses the same configuration as your main packages
     config = config.nixpkgs.config;
   };
-  in
+in
 
 {
 

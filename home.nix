@@ -40,8 +40,6 @@ let
     };
   };
 
-
-  
 in
 
 {
@@ -62,7 +60,7 @@ in
     obs-studio
     fastfetch
     (callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; })
-    
+
     intel-gpu-tools
     waybar
     pavucontrol
