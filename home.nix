@@ -44,6 +44,12 @@ in
     geteduroam-cli
     hyprshot
     jetbrains.pycharm-professional
+    superfile
+    pokemonsay
+    fortune
+    obs-studio
+    fastfetch
+    (callPackage ./brrtfetch.nix {})
     intel-gpu-tools
     waybar
     pavucontrol
