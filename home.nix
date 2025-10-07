@@ -37,6 +37,13 @@ in
     inputs.zen-browser.packages.${pkgs.system}.default
     nemo-with-extensions
     kitty
+    ledfx
+    steam-run
+    gemini-cli
+    geteduroam
+    geteduroam-cli
+    hyprshot
+    jetbrains.pycharm-professional
     intel-gpu-tools
     waybar
     pavucontrol

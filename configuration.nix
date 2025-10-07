@@ -97,6 +97,7 @@ services.thermald.enable = false;
   programs.zoxide.enable = true;
   programs.nh.enable = true;
   services.blueman.enable = true;
+  programs.steam.enable = true;
 
 
   home-manager.users.julius = ./home.nix;
