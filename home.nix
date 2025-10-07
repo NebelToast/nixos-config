@@ -39,6 +39,8 @@ let
       license = licenses.mit;
     };
   };
+
+
   
 in
 
@@ -60,6 +62,10 @@ in
     obs-studio
     fastfetch
     (callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; })
+    (callPackage ./pokemon-icat.nix {
+      src = inputs.pokemon-icat-src;
+      pokemon-icons-src = inputs.pokemon-icons-src;
+    })
     intel-gpu-tools
     waybar
     pavucontrol
