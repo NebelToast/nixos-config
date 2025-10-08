@@ -64,7 +64,7 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     vlc
     probe-rs-tools
     lolcat
-    
+    protonvpn-gui
     intel-gpu-tools
     waybar
     pavucontrol
