@@ -63,9 +63,7 @@ in
     vlc
     probe-rs-tools
     lolcat
-
-git-credential-manager
-
+    
     intel-gpu-tools
     waybar
     pavucontrol
