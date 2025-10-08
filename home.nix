@@ -60,8 +60,12 @@ in
     obs-studio
     fastfetch
     (callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; })
-vlc
-probe-rs-tools
+    vlc
+    probe-rs-tools
+    lolcat
+
+git-credential-manager
+
     intel-gpu-tools
     waybar
     pavucontrol
