@@ -22,6 +22,10 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pokemon-icat = {
+      url = "github:NebelToast/pokemon-icat/patch-1";
+inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
   outputs =
@@ -56,6 +60,7 @@
           }
         ];
       };
+      packages.${system}.brrtfetch = pkgs.callPackage ./brrtfetch.nix {src = inputs.brrtfetch-src;};
       formatter.${system} = pkgs.nixfmt-tree;
     };
 }

@@ -38,6 +38,24 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -112,6 +130,28 @@
         "type": "github"
       }
     },
+    "pokemon-icat": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759941048,
+        "narHash": "sha256-d6GYaOt8suYT/dlgLHXozJ/JeagxMIsCpcku8TCdcOk=",
+        "owner": "NebelToast",
+        "repo": "pokemon-icat",
+        "rev": "7474cdd38241ad99156395e64fe5c44097ea7ae4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NebelToast",
+        "ref": "patch-1",
+        "repo": "pokemon-icat",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "brrtfetch-src": "brrtfetch-src",
@@ -119,7 +159,23 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "pokemon-icat": "pokemon-icat",
         "zen-browser": "zen-browser"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "zen-browser": {

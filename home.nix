@@ -3,7 +3,7 @@
   lib,
   pkgs,
   inputs,
-  stable-pkgs,
+  stable-pkgs,self,
   ...
 }:
 
@@ -59,7 +59,8 @@ in
     fortune
     obs-studio
     fastfetch
-    (callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; })
+inputs.pokemon-icat.packages.${pkgs.system}.default
+    self.packages.${pkgs.system}.brrtfetch
     vlc
     probe-rs-tools
     lolcat

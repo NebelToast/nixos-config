@@ -1,17 +1,10 @@
-# Change the function arguments to accept `src` directly
-{
-  lib,
-  stdenv,
-  go,
-  src,
-}:
+{ lib, stdenv, fetchFromGitHub, go,src }:
 
 stdenv.mkDerivation rec {
   pname = "brrtfetch";
-  version = "unstable";
+  version = "unstable-2025-10-05";
 
-  # Remove the fetchFromGitHub block and just use the provided `src`
-  inherit src;
+inherit src;
 
   nativeBuildInputs = [ go ];
 
