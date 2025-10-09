@@ -12,10 +12,8 @@
 
 let
   # --- ADD THIS LINE ---
-  # Create a package set from your new 'nixpkgs-stable' input
   stable-pkgs = import inputs.nixpkgs-stable {
     system = pkgs.system;
-    # Ensure it uses the same configuration as your main packages
     config = config.nixpkgs.config;
   };
 in
@@ -132,7 +130,7 @@ in
           sessionData = config.services.displayManager.sessionData.desktops;
         in
         lib.concatStringsSep " " [
-          (lib.getExe pkgs.greetd.tuigreet)
+          (lib.getExe pkgs.tuigreet)
           "--time"
           "--asterisks"
           "--remember"
@@ -222,6 +220,7 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -54,13 +54,16 @@ in
     geteduroam-cli
     hyprshot
     stable-pkgs.jetbrains.pycharm-professional
+    stable-pkgs.beatprints
     superfile
     pokemonsay
+  
     fortune
     obs-studio
     fastfetch
 inputs.pokemon-icat.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.brrtfetch
+    hyprpicker
     vlc
     probe-rs-tools
     lolcat
