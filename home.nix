@@ -64,6 +64,8 @@ in
 inputs.pokemon-icat.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.brrtfetch
     hyprpicker
+    file
+
     vlc
     probe-rs-tools
     lolcat
@@ -83,6 +85,7 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     cliphist
     wl-clipboard
     btop
+    gimp
     hyprpaper
     davinci-resolve
     brightnessctl
@@ -96,13 +99,53 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
       ${builtins.readFile ./wallchanger.py}
     '')
   ];
-
+home.sessionVariables.BROWSER = "zen-browser";
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
   };
+# xdg.mimeApps = {
+#     enable = true;
+#     associations.added = {
+#       "application/pdf" = ["org.gnome.Evince.desktop"];
+#     };
+#     defaultApplications = {
+#       "application/pdf" = ["org.gnome.Evince.desktop"];
+#     };
+#   };
 
+
+xdg.mimeApps = {
+  enable = true;
+
+  # Sets the default application to open a file type
+  defaultApplications = {
+    "x-scheme-handler/http" = "zen-beta.desktop";
+    "x-scheme-handler/https" = "zen-beta.desktop";
+    "x-scheme-handler/chrome" = "zen-beta.desktop";
+    "text/html" = "zen-beta.desktop";
+    "application/x-extension-htm" = "zen-beta.desktop";
+    "application/x-extension-html" = "zen-beta.desktop";
+    "application/x-extension-shtml" = "zen-beta.desktop";
+    "application/xhtml+xml" = "zen-beta.desktop";
+    "application/x-extension-xhtml" = "zen-beta.desktop";
+    "application/x-extension-xht" = "zen-beta.desktop";
+    "application/pdf" = "app.zen_browser.zen.desktop";
+    "image/jpeg" = "app.zen_browser.zen.desktop";
+    "image/png" = "app.zen_browser.zen.desktop";
+
+    "text/plain" = "code.desktop";
+    "application/octet-stream" = "code.desktop";
+    "text/x-c" = "code.desktop";
+
+    "x-scheme-handler/discord-402572971681644545" = "discord-402572971681644545.desktop";
+  };
+  #   removedAssociations = {
+  #   "application/pdf" = [ "gimp.desktop" ];
+  # };
+
+};
   services.cliphist.enable = true;
 
   systemd.user.services.cliphist.Service.ExecStopPost =
