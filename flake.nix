@@ -26,6 +26,10 @@
       url = "github:NebelToast/pokemon-icat/patch-1";
 inputs.nixpkgs.follows = "nixpkgs";
     };
+    fsel = {
+      url ="github:Mjoyufull/fsel/main";
+  inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
   outputs =

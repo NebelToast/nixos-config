@@ -45,6 +45,8 @@ in
 {
   home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.fsel.packages.${pkgs.system}.default
+
     nemo-with-extensions
     kitty
     ledfx
@@ -89,6 +91,7 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     hyprpaper
     davinci-resolve
     brightnessctl
+    dooit
 
     # Now you just refer to your custom package by name
     terminal-flow
@@ -99,21 +102,12 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
       ${builtins.readFile ./wallchanger.py}
     '')
   ];
-home.sessionVariables.BROWSER = "zen-browser";
+home.sessionVariables.BROWSER = "zen";
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
   };
-# xdg.mimeApps = {
-#     enable = true;
-#     associations.added = {
-#       "application/pdf" = ["org.gnome.Evince.desktop"];
-#     };
-#     defaultApplications = {
-#       "application/pdf" = ["org.gnome.Evince.desktop"];
-#     };
-#   };
 
 
 xdg.mimeApps = {
