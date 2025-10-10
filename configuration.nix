@@ -64,9 +64,16 @@ in
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
+    fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     fira-code
     font-awesome
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.noto
+    nerd-fonts.hack
+    nerd-fonts.ubuntu
+
   ];
   hardware.bluetooth = {
     enable = true;

@@ -59,7 +59,7 @@ in
     stable-pkgs.beatprints
     superfile
     pokemonsay
-  
+  playerctl
     fortune
     obs-studio
     fastfetch
@@ -161,6 +161,7 @@ home.sessionVariables.BROWSER = "zen";
       name = "Open Sans";
       package = pkgs.open-sans;
     };
+    
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
