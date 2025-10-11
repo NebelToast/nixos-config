@@ -68,6 +68,7 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     hyprpicker
     file
     vlc
+    ascii-image-converter
     probe-rs-tools
     lolcat
     protonvpn-gui
