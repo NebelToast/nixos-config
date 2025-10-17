@@ -3,7 +3,8 @@
   lib,
   pkgs,
   inputs,
-  stable-pkgs,self,
+  stable-pkgs,
+  self,
   ...
 }:
 
@@ -58,12 +59,14 @@ in
     stable-pkgs.jetbrains.pycharm-professional
     stable-pkgs.beatprints
     superfile
+    #neovim
     pokemonsay
-  playerctl
+    element-desktop
+    playerctl
     fortune
     obs-studio
     fastfetch
-inputs.pokemon-icat.packages.${pkgs.system}.default
+    inputs.pokemon-icat.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.brrtfetch
     hyprpicker
     file
@@ -72,6 +75,7 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     probe-rs-tools
     lolcat
     protonvpn-gui
+    wireshark
     intel-gpu-tools
     waybar
     pavucontrol
@@ -88,11 +92,13 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
     wl-clipboard
     btop
     gimp
+    cmatrix
     hyprpaper
     davinci-resolve
     brightnessctl
     #nix-shell /home/julius/.config/dooit/ --run "dooit"
     dooit
+    ffmpeg
     dooit-extras
 
     # Now you just refer to your custom package by name
@@ -104,44 +110,94 @@ inputs.pokemon-icat.packages.${pkgs.system}.default
       ${builtins.readFile ./wallchanger.py}
     '')
   ];
-home.sessionVariables.BROWSER = "zen";
+  home.sessionVariables.BROWSER = "zen";
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
   };
 
+  # xdg.mimeApps = {
+  #   enable = true;
 
-# xdg.mimeApps = {
-#   enable = true;
+  #   # Sets the default application to open a file type
+  #   defaultApplications = {
+  #     "x-scheme-handler/http" = "zen-beta.desktop";
+  #     "x-scheme-handler/https" = "zen-beta.desktop";
+  #     "x-scheme-handler/chrome" = "zen-beta.desktop";
+  #     "text/html" = "zen-beta.desktop";
+  #     "application/x-extension-htm" = "zen-beta.desktop";
+  #     "application/x-extension-html" = "zen-beta.desktop";
+  #     "application/x-extension-shtml" = "zen-beta.desktop";
+  #     "application/xhtml+xml" = "zen-beta.desktop";
+  #     "application/x-extension-xhtml" = "zen-beta.desktop";
+  #     "application/x-extension-xht" = "zen-beta.desktop";
+  #     "application/pdf" = "app.zen_browser.zen.desktop";
+  #     "image/jpeg" = "app.zen_browser.zen.desktop";
+  #     "image/png" = "app.zen_browser.zen.desktop";
 
-#   # Sets the default application to open a file type
-#   defaultApplications = {
-#     "x-scheme-handler/http" = "zen-beta.desktop";
-#     "x-scheme-handler/https" = "zen-beta.desktop";
-#     "x-scheme-handler/chrome" = "zen-beta.desktop";
-#     "text/html" = "zen-beta.desktop";
-#     "application/x-extension-htm" = "zen-beta.desktop";
-#     "application/x-extension-html" = "zen-beta.desktop";
-#     "application/x-extension-shtml" = "zen-beta.desktop";
-#     "application/xhtml+xml" = "zen-beta.desktop";
-#     "application/x-extension-xhtml" = "zen-beta.desktop";
-#     "application/x-extension-xht" = "zen-beta.desktop";
-#     "application/pdf" = "app.zen_browser.zen.desktop";
-#     "image/jpeg" = "app.zen_browser.zen.desktop";
-#     "image/png" = "app.zen_browser.zen.desktop";
+  #     "text/plain" = "code.desktop";
+  #     "application/octet-stream" = "code.desktop";
+  #     "text/x-c" = "code.desktop";
 
-#     "text/plain" = "code.desktop";
-#     "application/octet-stream" = "code.desktop";
-#     "text/x-c" = "code.desktop";
+  #     "x-scheme-handler/discord-402572971681644545" = "discord-402572971681644545.desktop";
+  #   };
+  #   #   removedAssociations = {
+  #   #   "application/pdf" = [ "gimp.desktop" ];
+  #   # };
 
-#     "x-scheme-handler/discord-402572971681644545" = "discord-402572971681644545.desktop";
-#   };
-#   #   removedAssociations = {
-#   #   "application/pdf" = [ "gimp.desktop" ];
-#   # };
+  # };
 
-# };
+  programs = {
+    git = {
+      enable = true;
+
+      userName = "NebelToast";
+      userEmail = "juliussteude@gmail.com";
+      extraConfig.init.defaultBranch = "main";
+
+      signing = {
+        format = "ssh";
+        key = "/home/julius/.ssh/id_ed25519";
+        signByDefault = true;
+      };
+
+      includes = [
+        {
+          condition = "gitdir:~/Uni/**";
+          contents = {
+            user = {
+              name = "Julius Steude";
+              email = "julius.steude@stud.h-da.de";
+              signingkey = "/home/julius/.ssh/id_ed25519";
+            };
+          };
+        }
+      ];
+    };
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "code.fbi.h-da.de".identityFile = "/home/julius/.ssh/id_ed25519";
+        "github.com".identityFile = "/home/julius/.ssh/id_ed25519";
+
+      };
+    };
+  };
+
+  # In your home.nix
+  programs.neovim = {
+    enable = true;
+    # ... other neovim settings you might have ...
+
+    # This is the crucial part!
+    # It makes sure that the tools treesitter needs are available in Neovim's environment.
+    extraPackages = with pkgs; [
+      gcc # The C compiler needed to build parsers
+      tree-sitter # The tree-sitter CLI tool
+      git # Often used to fetch parsers
+    ];
+  };
   services.cliphist.enable = true;
 
   systemd.user.services.cliphist.Service.ExecStopPost =
@@ -162,7 +218,7 @@ home.sessionVariables.BROWSER = "zen";
       name = "Open Sans";
       package = pkgs.open-sans;
     };
-    
+
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 

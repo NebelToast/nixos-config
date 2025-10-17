@@ -57,6 +57,7 @@ in
       stable-pkgs.rocmPackages.clr.icd
 
       # For modern Intel CPU's
+
       stable-pkgs.intel-media-driver # Enable Hardware Acceleration
       # vpl-gpu-rt # Enable QSV
     ];
@@ -64,7 +65,7 @@ in
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
-    fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     fira-code
     font-awesome
@@ -113,6 +114,7 @@ in
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   programs.fish.enable = true;
+  programs.wireshark.enable = true;
   programs.zoxide.enable = true;
   programs.nh.enable = true;
   services.blueman.enable = true;
@@ -214,6 +216,8 @@ in
     extraGroups = [
       "networkmanager"
       "wheel"
+      "wireshark"
+      config.users.groups.docker.name
     ];
     packages = with pkgs; [
       #  thunderbird
@@ -222,12 +226,13 @@ in
     shell = pkgs.fish;
   };
 
+  virtualisation.docker.enable = true;
+
   # Install firefox.
   programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -236,6 +241,9 @@ in
     #  wget
     vscode-fhs
     obsidian
+    pkgs.docker-compose
+    pkgs.freerdp
+    inputs.winboat.packages.${pkgs.system}.winboat
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

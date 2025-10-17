@@ -4,6 +4,11 @@
     nixpkgs-stable = {
       url = "github:nixos/nixpkgs/nixos-25.05"; # Pin to a specific stable release
     };
+    winboat = {
+      url = "github:TibixDev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
@@ -24,11 +29,11 @@
     };
     pokemon-icat = {
       url = "github:NebelToast/pokemon-icat/patch-1";
-inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     fsel = {
-      url ="github:Mjoyufull/fsel/main";
-  inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Mjoyufull/fsel/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -64,7 +69,7 @@ inputs.nixpkgs.follows = "nixpkgs";
           }
         ];
       };
-      packages.${system}.brrtfetch = pkgs.callPackage ./brrtfetch.nix {src = inputs.brrtfetch-src;};
+      packages.${system}.brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
       formatter.${system} = pkgs.nixfmt-tree;
     };
 }

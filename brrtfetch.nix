@@ -1,10 +1,16 @@
-{ lib, stdenv, fetchFromGitHub, go,src }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  go,
+  src,
+}:
 
 stdenv.mkDerivation rec {
   pname = "brrtfetch";
   version = "unstable-2025-10-05";
 
-inherit src;
+  inherit src;
 
   nativeBuildInputs = [ go ];
 
