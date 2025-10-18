@@ -101,8 +101,8 @@ in
     ffmpeg
     dooit-extras
 
-    # Now you just refer to your custom package by name
     terminal-flow
+    self.packages.${pkgs.system}.songfetch
 
     (pkgs.writeScriptBin "rofi-clipboard" "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
     (pkgs.writeScriptBin "wallchanger" ''

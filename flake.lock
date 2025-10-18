@@ -260,6 +260,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "pokemon-icat": "pokemon-icat",
+        "songfetch": "songfetch",
         "winboat": "winboat",
         "zen-browser": "zen-browser"
       }
@@ -278,6 +279,22 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "songfetch": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760700955,
+        "narHash": "sha256-/mxLELKvLSJz7Ak3BYFJjcp+OL6+HGfslOGQTskf15k=",
+        "owner": "fwtwoo",
+        "repo": "songfetch",
+        "rev": "31f9302546cdee66279934fa5e53a3fa1ef4405a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fwtwoo",
+        "repo": "songfetch",
         "type": "github"
       }
     },

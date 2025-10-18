@@ -35,6 +35,10 @@
       url = "github:Mjoyufull/fsel/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    songfetch = {
+      url = "github:fwtwoo/songfetch";
+      flake = false;
+    };
 
   };
   outputs =
@@ -69,7 +73,29 @@
           }
         ];
       };
-      packages.${system}.brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
+      packages.${system} = {
+        brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
+        songfetch = pkgs.python3Packages.buildPythonApplication rec {
+          pname = "songfetch";
+          version = "unstable";
+          format = "pyproject";
+
+          src = inputs.songfetch;
+
+          nativeBuildInputs = [ pkgs.python3Packages.setuptools ];
+
+          propagatedBuildInputs = with pkgs.python3Packages; [
+            pillow
+            ascii-magic
+          ];
+
+          meta = with pkgs.lib; {
+            description = "A command-line tool to fetch song information";
+            homepage = "https://github.com/fwtwoo/songfetch";
+            license = licenses.mit;
+          };
+        };
+      };
       formatter.${system} = pkgs.nixfmt-tree;
     };
 }
