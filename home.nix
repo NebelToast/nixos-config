@@ -59,7 +59,7 @@ in
     stable-pkgs.jetbrains.pycharm-professional
     stable-pkgs.beatprints
     superfile
-    #neovim
+  
     pokemonsay
     element-desktop
     playerctl
@@ -117,6 +117,7 @@ in
     };
   };
 
+      
   # xdg.mimeApps = {
   #   enable = true;
 
@@ -164,7 +165,7 @@ in
 
       includes = [
         {
-          condition = "gitdir:~/Uni/**";
+          condition = "gitdir:/home/julius/Uni/**";
           contents = {
             user = {
               name = "Julius Steude";

@@ -19,7 +19,6 @@ let
 in
 
 {
-
   boot = {
     plymouth.enable = true;
     loader.timeout = 0;
@@ -76,6 +75,13 @@ in
     nerd-fonts.ubuntu
 
   ];
+
+  
+  nixpkgs.config.permittedInsecurePackages = [
+          "mbedtls-2.28.10"
+               ];
+  
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -229,7 +235,7 @@ in
   virtualisation.docker.enable = true;
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox.enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
