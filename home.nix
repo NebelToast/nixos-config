@@ -100,9 +100,10 @@ in
     dooit
     ffmpeg
     dooit-extras
-
+mpv
     terminal-flow
     self.packages.${pkgs.system}.songfetch
+    self.packages.${pkgs.system}.kaizen
 
     (pkgs.writeScriptBin "rofi-clipboard" "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
     (pkgs.writeScriptBin "wallchanger" ''

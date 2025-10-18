@@ -39,6 +39,11 @@
       url = "github:fwtwoo/songfetch";
       flake = false;
     };
+    Kaizen = {
+      url = "github:serene-brew/Kaizen";
+      flake = false;
+    };
+    flake-utils.url = "github:numtide/flake-utils";
 
   };
   outputs =
@@ -76,6 +81,7 @@
       packages.${system} = {
         brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
         songfetch = pkgs.callPackage ./songfetch.nix { songfetch-src = inputs.songfetch; };
+        kaizen = pkgs.callPackage ./kaizen.nix { src = inputs.Kaizen; };
       };
       formatter.${system} = pkgs.nixfmt-tree;
     };
