@@ -1,12 +1,12 @@
 
-{ pkgs, src }:
+{ pkgs, songfetch-src }:
 
 pkgs.python3Packages.buildPythonApplication rec {
   pname = "songfetch";
   version = "unstable";
   format = "pyproject";
 
-  src = src;
+  src = songfetch-src;
 
   nativeBuildInputs = [ pkgs.python3Packages.setuptools ];
 

@@ -75,7 +75,7 @@
       };
       packages.${system} = {
         brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
-        songfetch = pkgs.callPackage ./songfetch.nix { src = inputs.songfetch; };
+        songfetch = pkgs.callPackage ./songfetch.nix { songfetch-src = inputs.songfetch; };
       };
       formatter.${system} = pkgs.nixfmt-tree;
     };
