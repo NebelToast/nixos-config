@@ -99,6 +99,7 @@ in
     #nix-shell /home/julius/.config/dooit/ --run "dooit"
     dooit
     ffmpeg
+    wirelesstools
     dooit-extras
 mpv
     terminal-flow
