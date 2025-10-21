@@ -59,7 +59,7 @@ in
     stable-pkgs.jetbrains.pycharm-professional
     stable-pkgs.beatprints
     superfile
-  
+  rclone
     pokemonsay
     element-desktop
     playerctl
@@ -99,6 +99,7 @@ in
     #nix-shell /home/julius/.config/dooit/ --run "dooit"
     dooit
     ffmpeg
+    mediainfo
     wirelesstools
     dooit-extras
 mpv
@@ -119,7 +120,6 @@ mpv
     };
   };
 
-      
   # xdg.mimeApps = {
   #   enable = true;
 
@@ -150,14 +150,19 @@ mpv
   #   # };
 
   # };
-#signtest
   programs = {
     git = {
       enable = true;
 
-      userName = "NebelToast";
-      userEmail = "juliussteude@gmail.com";
-      extraConfig.init.defaultBranch = "main";
+      settings = {
+        user = {
+          name = "NebelToast";
+          email = "juliussteude@gmail.com";
+        };
+        init.defaultBranch = "main";
+
+      };
+
 
       signing = {
         format = "ssh";
