@@ -64,6 +64,7 @@ in
     element-desktop
     playerctl
     fortune
+    insomnia
     obs-studio
     fastfetch
     inputs.pokemon-icat.packages.${pkgs.system}.default
