@@ -20,6 +20,7 @@ in
 
 {
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     plymouth.enable = true;
     loader.timeout = 0;
     kernelParams = [
