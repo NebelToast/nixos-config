@@ -59,7 +59,7 @@ in
     stable-pkgs.jetbrains.pycharm-professional
     stable-pkgs.beatprints
     superfile
-  rclone
+    rclone
     pokemonsay
     element-desktop
     playerctl
@@ -67,6 +67,7 @@ in
     insomnia
     obs-studio
     fastfetch
+    pgadmin4
     inputs.pokemon-icat.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.brrtfetch
     hyprpicker
@@ -74,6 +75,7 @@ in
     vlc
     ascii-image-converter
     probe-rs-tools
+    postgresql
     lolcat
     protonvpn-gui
     wireshark
@@ -88,6 +90,8 @@ in
     just
     cbonsai
     spotify
+    powertop    
+  powerstat
     cava
     cliphist
     wl-clipboard

@@ -28,6 +28,8 @@ in
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+
+  
     ];
     initrd = {
       verbose = false;
@@ -36,16 +38,9 @@ in
     consoleLogLevel = 3;
 
   };
+
   services.thermald.enable = false;
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-    };
-    charger = {
-      governor = "powersave";
-    };
-  };
+services.power-profiles-daemon.enable = true;
   # services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics = {
     enable = true;
@@ -238,7 +233,7 @@ in
   virtualisation.docker.enable = true;
 
   # Install firefox.
-  programs.firefox.enable = false;
+  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
