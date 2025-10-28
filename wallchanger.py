@@ -24,7 +24,6 @@ wallpaper = , {path}/{wallpaper[int(choice)]}""")
             os.system(f"hyprctl hyprpaper reload , {path}/{wallpaper[int(choice)]}")
             os.system("kitten themes --reload-in=all Kittycolors")
             os.system("pkill waybar && hyprctl dispatch exec waybar")
-            os.system("spicetify apply > /dev/null 2>&1")
 
 
 def get_wallpaper():

@@ -8,7 +8,6 @@
   ...
 }:
 
-# # Use a 'let' block to define custom packages for better organization
 
 let
 
@@ -19,9 +18,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "kestalkayden";
       repo = "terminal-flow";
-      # This is the UPDATED commit hash
       rev = "b5423350531e4b1f57cd7d090581f67b4ec1b861";
-      # This is the NEW sha256 for the updated commit
       sha256 = "sha256-CkrO2kYWddn1TjxAaL6rTAu+EWNCVe/iwkR977Kl4RI=";
     };
 
@@ -92,6 +89,7 @@ in
     spotify
     powertop    
   powerstat
+  jetbrains.clion
     cava
     cliphist
     wl-clipboard
