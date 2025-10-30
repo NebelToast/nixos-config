@@ -29,7 +29,6 @@ in
       "rd.udev.log_level=3"
       "udev.log_priority=3"
 
-  
     ];
     initrd = {
       verbose = false;
@@ -40,7 +39,7 @@ in
   };
 
   services.thermald.enable = false;
-services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = true;
   # services.xserver.videoDrivers = [ "modesetting" ];
   hardware.graphics = {
     enable = true;
@@ -72,11 +71,9 @@ services.power-profiles-daemon.enable = true;
 
   ];
 
-  
   nixpkgs.config.permittedInsecurePackages = [
-          "mbedtls-2.28.10"
-               ];
-  
+    "mbedtls-2.28.10"
+  ];
 
   hardware.bluetooth = {
     enable = true;

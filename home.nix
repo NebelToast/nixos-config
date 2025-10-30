@@ -8,7 +8,6 @@
   ...
 }:
 
-
 let
 
   terminal-flow = pkgs.python3Packages.buildPythonApplication rec {
@@ -87,9 +86,9 @@ in
     just
     cbonsai
     spotify
-    powertop    
-  powerstat
-  jetbrains.clion
+    powertop
+    powerstat
+    jetbrains.clion
     cava
     cliphist
     wl-clipboard
@@ -105,7 +104,7 @@ in
     mediainfo
     wirelesstools
     dooit-extras
-mpv
+    mpv
     terminal-flow
     self.packages.${pkgs.system}.songfetch
     self.packages.${pkgs.system}.kaizen
@@ -166,7 +165,6 @@ mpv
 
       };
 
-
       signing = {
         format = "ssh";
         key = "/home/julius/.ssh/id_ed25519";
@@ -194,7 +192,7 @@ mpv
         "192.168.1.249" = {
           identityFile = "/home/julius/.ssh/id_rsa_pi";
           user = "nebeltoast";
-          };
+        };
       };
     };
   };
