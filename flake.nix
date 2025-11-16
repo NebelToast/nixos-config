@@ -4,10 +4,7 @@
     nixpkgs-stable = {
       url = "github:nixos/nixpkgs/nixos-25.05"; # Pin to a specific stable release
     };
-    winboat = {
-      url = "github:TibixDev/winboat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -28,8 +25,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pokemon-icat = {
-      url = "github:NebelToast/pokemon-icat/patch-1";
-      inputs.nixpkgs.follows = "nixpkgs";
+     url = "github:NebelToast/pokemon-icat/patch-1";
+     inputs.nixpkgs.follows = "nixpkgs";
     };
     fsel = {
       url = "github:Mjoyufull/fsel/main";
