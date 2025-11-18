@@ -43,7 +43,7 @@ in
   home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.system}.default
     inputs.fsel.packages.${pkgs.system}.default
-
+    inputs.affinity-nix.packages.x86_64-linux.v3
     nemo-with-extensions
     kitty
     ledfx
@@ -57,13 +57,14 @@ in
     superfile
     rclone
     pokemonsay
-    element-desktop
+    #element-desktop
     playerctl
     fortune
     insomnia
     obs-studio
+    #winboat
     fastfetch
-    pgadmin4
+    #pgadmin4
     inputs.pokemon-icat.packages.${pkgs.system}.default
     self.packages.${pkgs.system}.brrtfetch
     hyprpicker
@@ -73,8 +74,10 @@ in
     probe-rs-tools
     postgresql
     lolcat
-    protonvpn-gui
+    #protonvpn-gui
     wireshark
+    bandwhich
+    asciinema
     intel-gpu-tools
     waybar
     pavucontrol

@@ -12,6 +12,9 @@
       # to have it up-to-date or simply don't specify the nixpkgs input
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    affinity-nix = {
+       url = "github:mrshmllow/affinity-nix";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pokemon-icat = {
-     url = "github:NebelToast/pokemon-icat/patch-1";
+     url = "github:NebelToast/pokemon-icat";
      inputs.nixpkgs.follows = "nixpkgs";
     };
     fsel = {

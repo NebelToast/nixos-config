@@ -97,7 +97,7 @@ in
     };
   };
 
-  services.udev.packages = [ pkgs.probe-rs ];
+  services.udev.packages = [ pkgs.probe-rs-tools ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -244,7 +244,7 @@ in
     obsidian
     pkgs.docker-compose
     pkgs.freerdp
-    inputs.winboat.packages.${pkgs.system}.winboat
+    #inputs.winboat.packages.${pkgs.system}.winboat
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
