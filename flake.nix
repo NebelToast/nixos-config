@@ -5,7 +5,7 @@
       url = "github:nixos/nixpkgs/nixos-25.05"; # Pin to a specific stable release
     };
 
-
+    nixpkgs-c5ae371.url = "github:nixos/nixpkgs/c5ae371f1a6a7fd27823bc500d9390b38c05fa55"; 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure

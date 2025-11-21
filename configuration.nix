@@ -16,6 +16,10 @@ let
     system = pkgs.system;
     config = config.nixpkgs.config;
   };
+  pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
+    system = pkgs.system;
+    config = config.nixpkgs.config;
+  };
 in
 
 {
@@ -244,6 +248,7 @@ in
     obsidian
     pkgs.docker-compose
     pkgs.freerdp
+    pkgs-c5ae371.winboat
     #inputs.winboat.packages.${pkgs.system}.winboat
   ];
 
