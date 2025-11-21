@@ -9,7 +9,10 @@
 }:
 
 let
-
+  pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config = pkgs.config;
+  };
   terminal-flow = pkgs.python3Packages.buildPythonApplication rec {
     pname = "terminal-flow";
     version = "unstable";
@@ -40,6 +43,7 @@ let
 in
 
 {
+  
   home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.system}.default
     inputs.fsel.packages.${pkgs.system}.default
@@ -63,6 +67,8 @@ in
     insomnia
     obs-studio
     #winboat
+    pkgs-c5ae371.winboat 
+
     fastfetch
     #pgadmin4
     inputs.pokemon-icat.packages.${pkgs.system}.default
