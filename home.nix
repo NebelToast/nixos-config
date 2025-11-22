@@ -45,8 +45,8 @@ in
 {
   
   home.packages = with pkgs; [
-    inputs.zen-browser.packages.${pkgs.system}.default
-    inputs.fsel.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.affinity-nix.packages.x86_64-linux.v3
     nemo-with-extensions
     kitty
@@ -72,8 +72,8 @@ in
 
     fastfetch
     #pgadmin4
-    inputs.pokemon-icat.packages.${pkgs.system}.default
-    self.packages.${pkgs.system}.brrtfetch
+    inputs.pokemon-icat.packages.${pkgs.stdenv.hostPlatform.system}.default
+    self.packages.${pkgs.stdenv.hostPlatform.system}.brrtfetch
     hyprpicker
     file
     vlc
@@ -116,8 +116,8 @@ in
     dooit-extras
     mpv
     terminal-flow
-    self.packages.${pkgs.system}.songfetch
-    self.packages.${pkgs.system}.kaizen
+    self.packages.${pkgs.stdenv.hostPlatform.system}.songfetch
+    self.packages.${pkgs.stdenv.hostPlatform.system}.kaizen
 
     (pkgs.writeScriptBin "rofi-clipboard" "cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
     (pkgs.writeScriptBin "wallchanger" ''
@@ -196,6 +196,8 @@ in
     };
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
+      #addKeysToAgent = "yes";
       matchBlocks = {
         "code.fbi.h-da.de".identityFile = "/home/julius/.ssh/id_ed25519";
         "github.com".identityFile = "/home/julius/.ssh/id_ed25519";

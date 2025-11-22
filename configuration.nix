@@ -13,11 +13,11 @@
 let
   # --- ADD THIS LINE ---
   stable-pkgs = import inputs.nixpkgs-stable {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
   pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
-    system = pkgs.system;
+    system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
 in
