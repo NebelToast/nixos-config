@@ -203,7 +203,8 @@ in
       matchBlocks = {
         "code.fbi.h-da.de".identityFile = "/home/julius/.ssh/id_ed25519";
         "github.com".identityFile = "/home/julius/.ssh/id_ed25519";
-        "192.168.1.249" = {
+        "pi" = {
+          hostname = "192.168.1.249";
           identityFile = "/home/julius/.ssh/id_rsa_pi";
           user = "nebeltoast";
         };
