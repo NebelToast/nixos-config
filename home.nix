@@ -113,6 +113,7 @@ in
     ffmpeg
     mediainfo
     gitfetch
+    rsync
     wirelesstools
     #dooit-extras
     mpv
