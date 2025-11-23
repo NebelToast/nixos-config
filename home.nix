@@ -109,11 +109,11 @@ in
     davinci-resolve
     brightnessctl
     #nix-shell /home/julius/.config/dooit/ --run "dooit"
-    dooit
+    #dooit
     ffmpeg
     mediainfo
     wirelesstools
-    dooit-extras
+    #dooit-extras
     mpv
     terminal-flow
     self.packages.${pkgs.stdenv.hostPlatform.system}.songfetch
