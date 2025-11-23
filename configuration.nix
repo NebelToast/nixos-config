@@ -20,6 +20,13 @@ let
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
   };
+  dooit-custom = let
+    python = pkgs.python3;
+    sitePackages = python.sitePackages;
+  in pkgs.writeShellScriptBin "dooit" ''
+    export PYTHONPATH="${pkgs.dooit-extras}/${sitePackages}:$PYTHONPATH"
+    exec ${pkgs.dooit}/bin/dooit "$@"
+  '';
 in
 
 {
@@ -249,6 +256,7 @@ in
     pkgs.docker-compose
     pkgs.freerdp
     pkgs-c5ae371.winboat
+    dooit-custom
     #inputs.winboat.packages.${pkgs.system}.winboat
   ];
 
