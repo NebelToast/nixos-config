@@ -112,6 +112,7 @@ in
     #dooit
     ffmpeg
     mediainfo
+    gitfetch
     wirelesstools
     #dooit-extras
     mpv
