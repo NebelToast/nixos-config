@@ -11,7 +11,6 @@
 }:
 
 let
-  # --- ADD THIS LINE ---
   stable-pkgs = import inputs.nixpkgs-stable {
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
@@ -23,9 +22,10 @@ let
   dooit-custom = let
     python = pkgs.python3;
     sitePackages = python.sitePackages;
+    dooitPkg = inputs.dooit.packages.${pkgs.stdenv.hostPlatform.system}.default;
   in pkgs.writeShellScriptBin "dooit" ''
     export PYTHONPATH="${pkgs.dooit-extras}/${sitePackages}:$PYTHONPATH"
-    exec ${pkgs.dooit}/bin/dooit "$@"
+    exec ${dooitPkg}/bin/dooit "$@"
   '';
 in
 

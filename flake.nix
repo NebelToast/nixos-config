@@ -43,6 +43,9 @@
       url = "github:serene-brew/Kaizen";
       flake = false;
     };
+    dooit = {
+      url = "github:dooit-org/dooit";
+    };
     flake-utils.url = "github:numtide/flake-utils";
 
   };
