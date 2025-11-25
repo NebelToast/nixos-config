@@ -51,7 +51,7 @@ in
     nemo-with-extensions
     kitty
     yazi
-    ledfx
+    stable-pkgs.ledfx
     steam-run
     gemini-cli
     geteduroam
