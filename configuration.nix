@@ -14,6 +14,17 @@ let
   stable-pkgs = import inputs.nixpkgs-stable {
     system = pkgs.stdenv.hostPlatform.system;
     config = config.nixpkgs.config;
+    overlays = [
+      (final: prev: {
+        pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+          (python-final: python-prev: {
+            pylette = python-prev.pylette.overridePythonAttrs (old: {
+              doCheck = false;
+            });
+          })
+        ];
+      })
+    ];
   };
   pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
     system = pkgs.stdenv.hostPlatform.system;
