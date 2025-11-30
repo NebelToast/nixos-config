@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable = {
-      url = "github:nixos/nixpkgs/nixos-25.05"; # Pin to a specific stable release
+      url = "github:nixos/nixpkgs/nixos-25.11"; 
     };
 
     nixpkgs-c5ae371.url = "github:nixos/nixpkgs/c5ae371f1a6a7fd27823bc500d9390b38c05fa55"; 

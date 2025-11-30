@@ -62,7 +62,7 @@ in
     superfile
     rclone
     pokemonsay
-    #element-desktop
+    element-desktop
     playerctl
     fortune
     insomnia
