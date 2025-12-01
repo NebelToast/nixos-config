@@ -93,9 +93,9 @@ in
 
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "mbedtls-2.28.10"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "mbedtls-2.28.10"
+  # ];
 
   hardware.bluetooth = {
     enable = true;
