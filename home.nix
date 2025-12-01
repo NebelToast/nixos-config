@@ -43,7 +43,6 @@ let
 in
 
 {
-  
   home.packages = with pkgs; [
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -67,11 +66,8 @@ in
     fortune
     insomnia
     obs-studio
-    #winboat
-    pkgs-c5ae371.winboat 
-
+    pkgs-c5ae371.winboat
     fastfetch
-    #pgadmin4
     inputs.pokemon-icat.packages.${pkgs.stdenv.hostPlatform.system}.default
     self.packages.${pkgs.stdenv.hostPlatform.system}.brrtfetch
     hyprpicker
@@ -81,7 +77,6 @@ in
     probe-rs-tools
     postgresql
     lolcat
-    #protonvpn-gui
     wireshark
     bandwhich
     asciinema
@@ -108,14 +103,11 @@ in
     hyprpaper
     davinci-resolve
     brightnessctl
-    #nix-shell /home/julius/.config/dooit/ --run "dooit"
-    #dooit
     ffmpeg
     mediainfo
     gitfetch
     rsync
     wirelesstools
-    #dooit-extras
     mpv
     terminal-flow
     self.packages.${pkgs.stdenv.hostPlatform.system}.songfetch
@@ -134,36 +126,6 @@ in
     };
   };
 
-  # xdg.mimeApps = {
-  #   enable = true;
-
-  #   # Sets the default application to open a file type
-  #   defaultApplications = {
-  #     "x-scheme-handler/http" = "zen-beta.desktop";
-  #     "x-scheme-handler/https" = "zen-beta.desktop";
-  #     "x-scheme-handler/chrome" = "zen-beta.desktop";
-  #     "text/html" = "zen-beta.desktop";
-  #     "application/x-extension-htm" = "zen-beta.desktop";
-  #     "application/x-extension-html" = "zen-beta.desktop";
-  #     "application/x-extension-shtml" = "zen-beta.desktop";
-  #     "application/xhtml+xml" = "zen-beta.desktop";
-  #     "application/x-extension-xhtml" = "zen-beta.desktop";
-  #     "application/x-extension-xht" = "zen-beta.desktop";
-  #     "application/pdf" = "app.zen_browser.zen.desktop";
-  #     "image/jpeg" = "app.zen_browser.zen.desktop";
-  #     "image/png" = "app.zen_browser.zen.desktop";
-
-  #     "text/plain" = "code.desktop";
-  #     "application/octet-stream" = "code.desktop";
-  #     "text/x-c" = "code.desktop";
-
-  #     "x-scheme-handler/discord-402572971681644545" = "discord-402572971681644545.desktop";
-  #   };
-  #   #   removedAssociations = {
-  #   #   "application/pdf" = [ "gimp.desktop" ];
-  #   # };
-
-  # };
   programs = {
     git = {
       enable = true;
@@ -174,7 +136,6 @@ in
           email = "juliussteude@gmail.com";
         };
         init.defaultBranch = "main";
-
       };
 
       signing = {
@@ -199,7 +160,6 @@ in
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      #addKeysToAgent = "yes";
       matchBlocks = {
         "code.fbi.h-da.de".identityFile = "/home/julius/.ssh/id_ed25519";
         "github.com".identityFile = "/home/julius/.ssh/id_ed25519";
@@ -212,17 +172,12 @@ in
     };
   };
 
-  # In your home.nix
   programs.neovim = {
     enable = true;
-    # ... other neovim settings you might have ...
-
-    # This is the crucial part!
-    # It makes sure that the tools treesitter needs are available in Neovim's environment.
     extraPackages = with pkgs; [
-      gcc # The C compiler needed to build parsers
-      tree-sitter # The tree-sitter CLI tool
-      git # Often used to fetch parsers
+      gcc
+      tree-sitter
+      git
     ];
   };
   services.cliphist.enable = true;
@@ -230,7 +185,6 @@ in
   systemd.user.services.cliphist.Service.ExecStopPost =
     "${lib.getExe config.services.cliphist.package} wipe";
 
-  # This is the MERGED and corrected gtk block
   gtk = {
     enable = true;
     theme = {

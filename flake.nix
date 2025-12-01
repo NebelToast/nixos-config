@@ -8,8 +8,6 @@
     nixpkgs-c5ae371.url = "github:nixos/nixpkgs/c5ae371f1a6a7fd27823bc500d9390b38c05fa55"; 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input
       inputs.nixpkgs.follows = "nixpkgs";
     };
     affinity-nix = {
@@ -21,7 +19,7 @@
     };
     brrtfetch-src = {
       url = "github:ferrebarrat/brrtfetch/main";
-      flake = false; # This is a non-flake repository
+      flake = false;
     };
     disko = {
       url = "github:nix-community/disko/latest";
@@ -74,8 +72,6 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs self; };
-
-              # ----------------------
             };
             _module.args = { inherit inputs; };
           }
