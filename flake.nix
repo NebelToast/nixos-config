@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pokemon-icat = {
-     url = "github:NebelToast/pokemon-icat";
+     url = "github:NebelToast/pokemon-icat/main";
      inputs.nixpkgs.follows = "nixpkgs";
     };
     fsel = {
