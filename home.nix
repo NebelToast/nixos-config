@@ -49,14 +49,23 @@ in
     inputs.affinity-nix.packages.x86_64-linux.v3
     nemo-with-extensions
     kitty
+    qrencode
+    hyperfine
+    codecov-cli
+    libultrahdr
+    android-studio
     yazi
     stable-pkgs.ledfx
     steam-run
+    anki
+    wireguard-ui
     gemini-cli
     geteduroam
     geteduroam-cli
     hyprshot
-    stable-pkgs.jetbrains.pycharm-professional
+    stable-pkgs.jetbrains.pycharm
+    polychromatic
+    unzip
     stable-pkgs.beatprints
     superfile
     rclone
