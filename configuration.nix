@@ -200,6 +200,20 @@ hardware.openrazer.users = ["julius"];
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig.pipewire."99-allowed-rates" = {
+      "context.properties" = {
+        "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
+      };
+    };
+    wireplumber.extraConfig = {
+      "monitor.bluez.properties" = {
+          "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
+          "bluez5.codecs" = [ "ldac" "aac" "sbc_xq" "sbc" ];
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = false;
+          "bluez5.enable-hw-volume" = true;
+      };
+    };
   };
 
   users.users.julius = {
