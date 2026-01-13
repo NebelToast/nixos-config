@@ -114,7 +114,8 @@ programs.localsend.enable = true;
       };
     };
   };
-
+hardware.openrazer.enable = true;
+hardware.openrazer.users = ["julius"];
   services.udev.packages = [ pkgs.probe-rs-tools ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
