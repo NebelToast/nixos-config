@@ -50,10 +50,13 @@ in
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+      "i915.force_probe=!7d55"
+      "xe.force_probe=7d55"
     ];
     initrd = {
       verbose = false;
       systemd.enable = true;
+      kernelModules = [ "xe" ];
     };
     consoleLogLevel = 3;
   };
@@ -68,11 +71,17 @@ in
       stable-pkgs.intel-compute-runtime
       stable-pkgs.rocmPackages.clr.icd
       stable-pkgs.intel-media-driver
+      stable-pkgs.vpl-gpu-rt
     ];
   };
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
+    environment.variables = {
+    OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
+  };
+programs.localsend.enable = true;
+
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
     fira-code
