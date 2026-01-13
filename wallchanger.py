@@ -16,12 +16,24 @@ def main_loop(wallpaper):
             for elements in wallpaper:
                 os.system(f"wallust run {path}/{elements}")
         else:
-            open("/home/julius/.config/hypr/hyprpaper.conf", "w").write(f"""
-preload = {path}/{wallpaper[int(choice)]}
-wallpaper = , {path}/{wallpaper[int(choice)]}""")
+            open("/home/julius/.config/hypr/hyprpaper.conf", "w").write(f"""splash=off
+    wallpaper {{
+    monitor = eDP-1
+    path = {path}/{wallpaper[int(choice)]}
+    fit_mode = cover
+}}
+
+    wallpaper {{
+    monitor = HDMI-A-1
+    path = {path}/{wallpaper[int(choice)]}
+    fit_mode = cover
+}}
+
+""")
             
             os.system(f"wallust run {path}/{wallpaper[int(choice)]} > /dev/null 2>&1")
-            os.system(f"hyprctl hyprpaper reload , {path}/{wallpaper[int(choice)]}")
+            os.system(f"hyprctl hyprpaper wallpaper eDP-1,{path}/{wallpaper[int(choice)]}, splash=off")
+            os.system(f"hyprctl hyprpaper wallpaper HDMI-A-1,{path}/{wallpaper[int(choice)]}, splash=off")
             os.system("kitten themes --reload-in=all Kittycolors")
             os.system("pkill waybar && hyprctl dispatch exec waybar")
 
