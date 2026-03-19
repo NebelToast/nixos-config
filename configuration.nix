@@ -28,16 +28,20 @@ let
   };
   pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
     system = pkgs.stdenv.hostPlatform.system;
-    config = config.nixpkgs.config;
+    config = {
+      allowUnfree = true;
+    };
   };
-  dooit-custom = let
-    python = pkgs.python3;
-    sitePackages = python.sitePackages;
-    dooitPkg = inputs.dooit.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  in pkgs.writeShellScriptBin "dooit" ''
-    export PYTHONPATH="${pkgs.dooit-extras}/${sitePackages}:$PYTHONPATH"
-    exec ${dooitPkg}/bin/dooit "$@"
-  '';
+  dooit-custom =
+    let
+      python = pkgs.python3;
+      sitePackages = python.sitePackages;
+      dooitPkg = inputs.dooit.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    in
+    pkgs.writeShellScriptBin "dooit" ''
+      export PYTHONPATH="${pkgs.dooit-extras}/${sitePackages}:$PYTHONPATH"
+      exec ${dooitPkg}/bin/dooit "$@"
+    '';
 in
 
 {
@@ -61,6 +65,16 @@ in
     consoleLogLevel = 3;
   };
 
+
+
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+    extraUpFlags = [ "--operator=julius" ];
+  };
+services.udev.extraRules = ''
+  SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", MODE="0666"
+'';
   services.thermald.enable = false;
   services.power-profiles-daemon.enable = true;
   hardware.graphics = {
@@ -77,10 +91,10 @@ in
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
-    environment.variables = {
+  environment.variables = {
     OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
   };
-programs.localsend.enable = true;
+  programs.localsend.enable = true;
 
   fonts.fontconfig.enable = true;
   fonts.packages = with pkgs; [
@@ -114,10 +128,12 @@ programs.localsend.enable = true;
       };
     };
   };
-hardware.openrazer.enable = true;
-hardware.openrazer.users = ["julius"];
-  services.udev.packages = [ pkgs.probe-rs-tools ];
+  hardware.openrazer.enable = true;
+  hardware.openrazer.users = [ "julius" ];
+  services.udev.packages = [ pkgs.probe-rs-tools pkgs.openocd];
+
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "UwU"; # Define your hostname.
@@ -201,16 +217,31 @@ hardware.openrazer.users = ["julius"];
     pulse.enable = true;
     extraConfig.pipewire."99-allowed-rates" = {
       "context.properties" = {
-        "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
+        "default.clock.allowed-rates" = [
+          44100
+          48000
+          88200
+          96000
+          176400
+          192000
+        ];
       };
     };
     wireplumber.extraConfig = {
       "monitor.bluez.properties" = {
-          "bluez5.roles" = [ "a2dp_sink" "a2dp_source" ];
-          "bluez5.codecs" = [ "ldac" "aac" "sbc_xq" "sbc" ];
-          "bluez5.enable-sbc-xq" = true;
-          "bluez5.enable-msbc" = false;
-          "bluez5.enable-hw-volume" = true;
+        "bluez5.roles" = [
+          "a2dp_sink"
+          "a2dp_source"
+        ];
+        "bluez5.codecs" = [
+          "ldac"
+          "aac"
+          "sbc_xq"
+          "sbc"
+        ];
+        "bluez5.enable-sbc-xq" = true;
+        "bluez5.enable-msbc" = false;
+        "bluez5.enable-hw-volume" = true;
       };
     };
   };
@@ -222,6 +253,8 @@ hardware.openrazer.users = ["julius"];
       "networkmanager"
       "wheel"
       "wireshark"
+      "plugdev"
+      "dialout"
       config.users.groups.docker.name
     ];
     shell = pkgs.fish;
