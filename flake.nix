@@ -2,16 +2,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable = {
-      url = "github:nixos/nixpkgs/nixos-25.11"; 
+      url = "github:nixos/nixpkgs/nixos-25.11";
     };
 
-    nixpkgs-c5ae371.url = "github:nixos/nixpkgs/c5ae371f1a6a7fd27823bc500d9390b38c05fa55"; 
+    nixpkgs-c5ae371.url = "github:nixos/nixpkgs/c5ae371f1a6a7fd27823bc500d9390b38c05fa55";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     affinity-nix = {
-       url = "github:mrshmllow/affinity-nix";
+      url = "github:mrshmllow/affinity-nix";
     };
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -26,8 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pokemon-icat = {
-     url = "github:NebelToast/pokemon-icat/main";
-     inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:NebelToast/pokemon-icat/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     fsel = {
       url = "github:Mjoyufull/fsel/main";
@@ -44,6 +44,11 @@
     dooit = {
       url = "github:dooit-org/dooit";
     };
+    cli-p2p = {
+      url = "github:NebelToast/cli-p2p-messenger";
+    };
+
+    
     flake-utils.url = "github:numtide/flake-utils";
 
   };
