@@ -11,7 +11,9 @@
 let
   pkgs-c5ae371 = import inputs.nixpkgs-c5ae371 {
     inherit (pkgs.stdenv.hostPlatform) system;
-    config = pkgs.config;
+    config = {
+      allowUnfree = true;
+    };
   };
   terminal-flow = pkgs.python3Packages.buildPythonApplication rec {
     pname = "terminal-flow";
@@ -44,6 +46,7 @@ in
 
 {
   home.packages = with pkgs; [
+    inputs.cli-p2p.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.affinity-nix.packages.x86_64-linux.v3
@@ -51,13 +54,14 @@ in
     kitty
     qrencode
     hyperfine
-    codecov-cli
+    stable-pkgs.codecov-cli
     libultrahdr
     android-studio
+    android-tools
     yazi
-    stable-pkgs.ledfx
+    ledfx
     steam-run
-    anki
+    stable-pkgs.anki
     wireguard-ui
     gemini-cli
     geteduroam
@@ -66,7 +70,7 @@ in
     stable-pkgs.jetbrains.pycharm
     polychromatic
     unzip
-    stable-pkgs.beatprints
+    # stable-pkgs.beatprints
     superfile
     rclone
     pokemonsay
@@ -102,14 +106,17 @@ in
     spotify
     powertop
     powerstat
-    jetbrains.clion
     cava
+    nmap
     cliphist
     wl-clipboard
     btop
     gimp
     cmatrix
+    scrcpy
+    usbutils
     hyprpaper
+    linux-wallpaperengine
     davinci-resolve
     brightnessctl
     ffmpeg
@@ -172,11 +179,7 @@ in
       matchBlocks = {
         "code.fbi.h-da.de".identityFile = "/home/julius/.ssh/id_ed25519";
         "github.com".identityFile = "/home/julius/.ssh/id_ed25519";
-        "pi" = {
-          hostname = "192.168.1.249";
-          identityFile = "/home/julius/.ssh/id_rsa_pi";
-          user = "nebeltoast";
-        };
+
       };
     };
   };
