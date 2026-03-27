@@ -91,6 +91,7 @@ in
     postgresql
     lolcat
     wireshark
+    libreoffice
     bandwhich
     asciinema
     intel-gpu-tools
