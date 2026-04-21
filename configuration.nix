@@ -65,16 +65,14 @@ in
     consoleLogLevel = 3;
   };
 
-
-
   services.tailscale = {
     enable = true;
     openFirewall = true;
     extraUpFlags = [ "--operator=julius" ];
   };
-services.udev.extraRules = ''
-  SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", MODE="0666"
-'';
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0d28", ATTR{idProduct}=="0204", MODE="0666"
+  '';
   services.thermald.enable = false;
   services.power-profiles-daemon.enable = true;
   hardware.graphics = {
@@ -248,7 +246,7 @@ services.udev.extraRules = ''
       };
     };
   };
-
+  security.sudo.extraConfig = "Defaults pwfeedback";
   users.users.julius = {
     isNormalUser = true;
     description = "julius";
