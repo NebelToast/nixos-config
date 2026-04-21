@@ -130,7 +130,10 @@ services.udev.extraRules = ''
   };
   hardware.openrazer.enable = true;
   hardware.openrazer.users = [ "julius" ];
-  services.udev.packages = [ pkgs.probe-rs-tools pkgs.openocd];
+  services.udev.packages = [
+    pkgs.probe-rs-tools
+    pkgs.openocd
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
