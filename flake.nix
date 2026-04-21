@@ -10,9 +10,7 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    affinity-nix = {
-      url = "github:mrshmllow/affinity-nix";
-    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +46,6 @@
       url = "github:NebelToast/cli-p2p-messenger";
     };
 
-    
     flake-utils.url = "github:numtide/flake-utils";
 
   };
@@ -70,6 +67,7 @@
           ./disko.nix
           ./configuration.nix
           ./hardware-configuration.nix
+          ./syncthing.nix
           inputs.home-manager.nixosModules.home-manager
           inputs.disko.nixosModules.default
           {
@@ -86,6 +84,7 @@
         brrtfetch = pkgs.callPackage ./brrtfetch.nix { src = inputs.brrtfetch-src; };
         songfetch = pkgs.callPackage ./songfetch.nix { songfetch-src = inputs.songfetch; };
         kaizen = pkgs.callPackage ./kaizen.nix { src = inputs.Kaizen; };
+
       };
       formatter.${system} = pkgs.nixfmt-tree;
     };
