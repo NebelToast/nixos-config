@@ -49,10 +49,10 @@ in
     inputs.cli-p2p.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.affinity-nix.packages.x86_64-linux.v3
     nemo-with-extensions
     kitty
     qrencode
+    sniffnet
     hyperfine
     stable-pkgs.codecov-cli
     libultrahdr
@@ -61,6 +61,8 @@ in
     yazi
     ledfx
     steam-run
+    vicinae
+    openssl
     stable-pkgs.anki
     wireguard-ui
     gemini-cli
