@@ -51,6 +51,8 @@ in
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     nemo-with-extensions
     kitty
+    net-tools
+    tldr
     qrencode
     sniffnet
     hyperfine
@@ -188,6 +190,8 @@ in
   };
 
   programs.neovim = {
+    withRuby = false;
+    withPython3 = false;
     enable = true;
     extraPackages = with pkgs; [
       gcc
@@ -214,6 +218,7 @@ in
       name = "Open Sans";
       package = pkgs.open-sans;
     };
+    gtk4.theme = null;
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
