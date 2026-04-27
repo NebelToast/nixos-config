@@ -61,6 +61,7 @@ in
     android-studio
     android-tools
     yazi
+    google-chrome
     ledfx
     steam-run
     vicinae
