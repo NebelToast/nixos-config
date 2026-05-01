@@ -58,10 +58,8 @@ in
     hyperfine
     stable-pkgs.codecov-cli
     libultrahdr
-    android-studio
     android-tools
     yazi
-    google-chrome
     ledfx
     steam-run
     vicinae
@@ -122,7 +120,6 @@ in
     scrcpy
     usbutils
     hyprpaper
-    linux-wallpaperengine
     davinci-resolve
     brightnessctl
     ffmpeg
