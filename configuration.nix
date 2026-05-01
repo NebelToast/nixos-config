@@ -45,6 +45,7 @@ let
 in
 
 {
+  programs.nix-ld.enable = true;
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     plymouth.enable = true;
